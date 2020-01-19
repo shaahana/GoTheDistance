@@ -11,49 +11,20 @@ public class Database {
 
     }
 
-    public void loadDB() {
-        Produce a = new Produce("apple", 3306, "Washington State");
-        Produce b = new Produce("pear", 3306, "Washington State");
-        Produce c = new Produce("orange", 1725, "Florida");
-        Produce d = new Produce("grapefruit", 1725, "Florida");
-        Produce e = new Produce("lemon", 1725, "Florida");
-        Produce f = new Produce("lime", 1725, "Florida");
-        Produce g = new Produce("clementine", 1725, "Florida");
-        Produce h = new Produce("tangerine", 1725, "Florida");
-        Produce i = new Produce("cabbage", 3573, "California");
-        Produce j = new Produce("lettuce", 3573, "California");
-        Produce k = new Produce("grapes", 3573, "California");
-        Produce l = new Produce("avocado", 3482, "Michoacan, Mexico");
-        Produce m = new Produce("watermelon", 3482, "Michoacan, Mexico");
-        Produce n = new Produce("mango", 3482, "Michoacan, Mexico");
-        Produce o = new Produce("banana", 3893, "Guatemala");
-        Produce p = new Produce("tomato", 3482, "Michoacan, Mexico");
-        Produce q = new Produce("melon", 3573, "California");
-        Produce r = new Produce("soybean", 1502, "Iowa");
-        Produce s = new Produce("onion", 3573, "California");
-        Produce t = new Produce("potato", 3009, "Idaho");
-
-        this.db.add(a);
-        this.db.add(b);
-        this.db.add(c);
-        this.db.add(d);
-        this.db.add(e);
-        this.db.add(f);
-        this.db.add(g);
-        this.db.add(h);
-        this.db.add(i);
-        this.db.add(j);
-        this.db.add(k);
-        this.db.add(l);
-        this.db.add(m);
-        this.db.add(n);
-        this.db.add(o);
-        this.db.add(p);
-        this.db.add(q);
-        this.db.add(r);
-        this.db.add(s);
-        this.db.add(t);
-
+    public void loadDB(String filepath) throws Exception{
+        FileReader fr = new FileReader(filepath);
+        BufferedReader br = new BufferedReader(fr);
+        String currentLine = br.readLine();
+        while(currentLine!=null){
+            String[] split = currentLine.split(",");
+            String name = split[0];
+            int kgC = (int) Double.parseDouble(split[1]);
+            String origin = split[2];
+            int dist = Integer.parseInt(split[3]);
+            Produce p = new Produce(name, kgC, origin, dist);
+            db.add(p);
+            currentLine=br.readLine();
+        }
     }
 
     public ArrayList<Produce> getDb() {
@@ -77,10 +48,11 @@ public class Database {
         double carbonOut;
         double mtlLati = 45.508800;
         double mtlLongi = -73.571750;
+
         String fileName = "country_coordinates.csv";
         File file = new File(fileName);
-
         Scanner inputStream = new Scanner(file);
+
         while(inputStream.hasNext()){
             String data = inputStream.next();
             String[] split = data.split(",");
@@ -95,11 +67,13 @@ public class Database {
                 double kgC;
                 if(country.equalsIgnoreCase("United-States")||country.equalsIgnoreCase("Mexico")){
                      kgC = 0.9*dist;
-                } else {kgC=15*dist;}
+                } else {kgC= 15*dist;}
 
 
-                Produce newP = new Produce(name, kgC, origin);
+                Produce newP = new Produce(name, kgC, origin, dist);
                 db.add(newP);
+
+
                 return newP;
 
 
@@ -107,5 +81,29 @@ public class Database {
         }
         System.out.println("Country not found");
         return null;
+    }
+    public void saveDB(String filepath){
+        for(int i=0; i<db.size(); i++){
+            Produce p = db.get(i);
+            String name = p.getName();
+            String kgC = String.valueOf(p.getKgCarbon());
+            String origin = p.getOrigin();
+            String dist = String.valueOf(p.getDist());
+
+            try{
+                FileWriter fw = new FileWriter(filepath,true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter pw = new PrintWriter(bw);
+                pw.println(name+","+kgC+","+origin+","+dist);
+
+                pw.flush();
+                pw.close();
+                bw.close();
+                fw.close();
+            }
+            catch(Exception e){
+                System.out.println("Error: record not saved");
+            }
+        }
     }
 }
