@@ -1,0 +1,41 @@
+apple,3306.0,Washington State,3674
+pear,3306.0,Washington State,3674
+orange,1725.0,Florida,1917
+grapefruit,1725.0,Florida,1917
+lemon,1725.0,Florida,1917
+lime,1725.0,Florida,1917
+clementine,1725.0,Florida,1917
+tangerine,1725.0,Florida,1917
+cabbage,3573.0,California,3971
+lettuce,3573.0,California,3971
+grapes,3573.0,California,3971
+avocado,3482.0,Mexico,3869
+watermelon,3482.0,Mexico,3869
+mango,3482.0,Michoacan Mexico,3869
+banana,3893.0,Guatemala,4326
+tomato,3482.0,Mexico,3869
+melon,3573.0,California,3971
+soybean,1502.0,Iowa,1669
+onion,3573.0,California,3971
+potato,3009.0,Idaho,3344
+apple,3306.0,Washington State,3674
+pear,3306.0,Washington State,3674
+orange,1725.0,Florida,1917
+grapefruit,1725.0,Florida,1917
+lemon,1725.0,Florida,1917
+lime,1725.0,Florida,1917
+clementine,1725.0,Florida,1917
+tangerine,1725.0,Florida,1917
+cabbage,3573.0,California,3971
+lettuce,3573.0,California,3971
+grapes,3573.0,California,3971
+avocado,3482.0,Mexico,3869
+watermelon,3482.0,Mexico,3869
+mango,3482.0,Michoacan Mexico,3869
+banana,3893.0,Guatemala,4326
+tomato,3482.0,Mexico,3869
+melon,3573.0,California,3971
+soybean,1502.0,Iowa,1669
+onion,3573.0,California,3971
+potato,3009.0,Idaho,3344
+peach,98825.79484793164,Italy,6588
