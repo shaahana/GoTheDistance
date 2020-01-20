@@ -82,28 +82,45 @@ public class Database {
         System.out.println("Country not found");
         return null;
     }
-    public void saveDB(String filepath){
-        for(int i=0; i<db.size(); i++){
-            Produce p = db.get(i);
-            String name = p.getName();
-            String kgC = String.valueOf(p.getKgCarbon());
-            String origin = p.getOrigin();
-            String dist = String.valueOf(p.getDist());
+    public void saveDB(String filepath, Produce p){
+        String name = p.getName();
+        String kgC = String.valueOf(p.getKgCarbon());
+        String origin = p.getOrigin();
+        String dist = String.valueOf(p.getDist());
+        try{
+            FileWriter fw = new FileWriter(filepath,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            pw.println(name+","+kgC+","+origin+","+dist);
 
-            try{
-                FileWriter fw = new FileWriter(filepath,true);
-                BufferedWriter bw = new BufferedWriter(fw);
-                PrintWriter pw = new PrintWriter(bw);
-                pw.println(name+","+kgC+","+origin+","+dist);
-
-                pw.flush();
-                pw.close();
-                bw.close();
-                fw.close();
-            }
-            catch(Exception e){
-                System.out.println("Error: record not saved");
-            }
+            pw.flush();
+            pw.close();
+            bw.close();
+            fw.close();
         }
+        catch(Exception e){
+            System.out.println("Error: record not saved");
+        }
+//        for(int i=0; i<db.size(); i++){
+//            //Produce p = db.get(i);
+//            String name = p.getName();
+//            String kgC = String.valueOf(p.getKgCarbon());
+//            String origin = p.getOrigin();
+//            String dist = String.valueOf(p.getDist());
+//            try{
+//                FileWriter fw = new FileWriter(filepath,true);
+//                BufferedWriter bw = new BufferedWriter(fw);
+//                PrintWriter pw = new PrintWriter(bw);
+//                pw.println(name+","+kgC+","+origin+","+dist);
+//
+//                pw.flush();
+//                pw.close();
+//                bw.close();
+//                fw.close();
+//            }
+//            catch(Exception e){
+//                System.out.println("Error: record not saved");
+//            }
+//        }
     }
 }

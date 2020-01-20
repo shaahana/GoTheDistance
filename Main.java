@@ -50,7 +50,7 @@ public class Main {
                 double newKgC = newP.getKgCarbon();
                 int dist = newP.getDist();
 
-                db.saveDB("database.txt");
+                db.saveDB("database.txt", newP);
                 System.out.println("Thank you! Your entry has been successfully added to the database.");
 
                 System.out.println("Your product was shipped "+dist+" km");
@@ -59,6 +59,7 @@ public class Main {
 
                 int newTree = (int) (newKgC/22.0);
                 System.out.println("It would take about " + newTree + " trees one year to offset this amount of carbon dioxide.");
+                Main.goAgain(db);
                 return;
             }
             double kgCarbon = p.getKgCarbon();
@@ -87,7 +88,7 @@ public class Main {
             double newKgC = newP.getKgCarbon();
             int newDist = newP.getDist();
 
-            db.saveDB("database.txt");
+            db.saveDB("database.txt", newP);
             System.out.println("Thank you! Your entry has been successfully added to the database.");
 
             System.out.println("Your product was shipped "+newDist+" km");
